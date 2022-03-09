@@ -10,7 +10,7 @@ function Post(props) {
             
             <Avatar
                 className="postAvatar"
-                alt={"Username"}
+                alt={props.username}
                 src= {props.avatarImgUrl}
             />
 
