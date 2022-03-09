@@ -1,0 +1,39 @@
+.post{
+    width: 99vw;
+    max-width: 500px;
+    border: 1px solid rgb(218, 217, 217);
+    margin: auto;
+    margin-bottom: 35px;
+    background-color: #fff;
+}
+
+.postHeader{
+    display: flex;
+    align-items: center;
+    padding: 15px 10px 10px 0;
+    margin: auto;
+}
+
+.postAvatar{
+    margin-right:12px;
+    margin-left: 10px;
+}
+
+.postImg{
+    width: 100%;
+    object-fit: contain;
+    border-top: 1px solid rgb(218, 217, 217);
+    border-bottom: 1px solid rgb(218, 217, 217);
+}
+
+.postDescription{
+    padding: 10px;
+    font-weight: normal;
+    margin-bottom: 10px;
+}
+
+@media (min-width: 576px){
+    .post{
+        margin-bottom: 40px;
+    }
+}
