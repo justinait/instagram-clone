@@ -1,9 +1,3 @@
-/*import firebase from 'firebase/compat/app';
-//import firebase from '@firebase/app';
-import 'firebase/compat/firestore';
-import { firestore } from "firebase/app";
-import '@firebase/firestore'*/
-//import firebase from './firebase'
 import '@firebase/firestore'
 import 'firebase/compat/firestore';
 import firebase from 'firebase/compat/app';
@@ -22,5 +16,4 @@ const firebaseApp = firebase.initializeApp(firebaseConfig);
 
 const db = firebaseApp.firestore();
 
-export {db, firebase};
-//export default db;
+export default db;
