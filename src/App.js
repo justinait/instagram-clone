@@ -16,25 +16,20 @@ function getModalStyle(){
     transform: `translate(-${top}%, -${left}%)`
   }
 }
-/*
-const theme = createTheme({
 
-});
 
 const useStyles = makeStyles((theme) => ({
   paper: {
+    backgroundColor: 'black',
     position: 'absolute',
     width: 400,
-    //background: theme.blue,//theme.palette.background.paper
-    backgroundColor: theme.palette.background.paper,
     border: '2px solid #000',
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3)
+    color: 'white'
   }
 }))
-*/
+
 function App() {
-  //const classes = useStyles();
+  const classes = useStyles();
   const [modalStyle] = useState(getModalStyle)
 
   const [posts, setPosts] = useState([]);
@@ -63,9 +58,9 @@ function App() {
     <div>
       <Modal
         open={open}
-        onClose={() => setOpen(false)}                 //onClose={handleClose}         //const handleClose = () => {    setOpen(false);  } //     className={classes.paper}
+        onClose={() => setOpen(false)}                 //onClose={handleClose}         //const handleClose = () => {    setOpen(false);  } //    
       >
-        <div style={modalStyle} >
+        <div style={modalStyle}  className={classes.paper}>
           <h2>im a modal</h2>
         </div>
       </Modal>
