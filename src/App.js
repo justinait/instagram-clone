@@ -115,9 +115,9 @@ function App() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />      
-            
-            <Button type="submit" onClick={signUp}>     Sign Up     </Button>
 
+            <Button type="submit" onClick={signUp}>     Sign Up     </Button>
+            
           </form>
           
         </div>
@@ -127,7 +127,11 @@ function App() {
         <img className="headerImg" src='instagram.png' alt="Instagram" />
       </div>
 
-      <Button onClick={() => setOpen(true)}>Sign up</Button>
+      {user ? (
+        <Button onClick={() => auth.signOut()}>Sign out</Button>
+      ) : (
+        <Button onClick={() => setOpen(true)}>Sign up</Button>
+      )   }         
 
       {
         posts.map( ({id, post}) => (
