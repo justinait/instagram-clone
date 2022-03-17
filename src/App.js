@@ -33,6 +33,7 @@ function App() {
 
   const [posts, setPosts] = useState([]);
   const [open, setOpen] = useState(false);
+  const [openSignIn, setOpenSignIn] = useState(false);
 
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
@@ -74,16 +75,28 @@ function App() {
 
   
   const signUp = (event) => {
-    event.preventDefault();
+    event.preventDefault();   //so it doesnt refresh
 
     auth
-    .createUserWithEmailAndPassword(email, password)
-    .then((authUser) => {
-      return authUser.user.updateProfile({
-        displayName: username                         //i dont get the difference btwn displayname and username   //literally theres no difference but i've to have both cause displayname is a property from auth, wich value is username
+      .createUserWithEmailAndPassword(email, password)
+      .then((authUser) => {
+        return authUser.user.updateProfile({
+          displayName: username                         //i dont get the difference btwn displayname and username   //literally theres no difference but i've to have both cause displayname is a property from auth, wich value is username
+        })
       })
-    })
-    .catch((error) => alert(error.message))   //create the message automatically 
+      .catch((error) => alert(error.message));   //create the message automatically 
+    
+    setOpen(false);
+  }
+
+  const signIn = (event) => {
+    event.preventDefault();
+    //que cheque si los datos son correctos y dependiendo de eso tira error o entra
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .catch((error) => alert(error.message));
+
+    setOpenSignIn(false);
   }
 
   return (
@@ -116,7 +129,35 @@ function App() {
               onChange={(e) => setPassword(e.target.value)}
             />      
 
-            <Button type="submit" onClick={signUp}>     Sign Up     </Button>
+            <Button type="submit" onClick={signUp}>     OK     </Button>
+            
+          </form>
+          
+        </div>
+      </Modal>
+      <Modal
+        open={openSignIn}
+        onClose={() => setOpenSignIn(false)}
+      >
+        <div style={modalStyle}  className={classes.paper}>
+          <form className="signUp">
+            <center>
+              <img src='./instagramIcon.png' alt="Instagram" width="30"/>    
+            </center>
+            <Input
+              placeholder="Email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <Input
+              placeholder="Password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />      
+
+            <Button type="submit" onClick={signIn}>     OK     </Button>
             
           </form>
           
@@ -130,7 +171,10 @@ function App() {
       {user ? (
         <Button onClick={() => auth.signOut()}>Sign out</Button>
       ) : (
-        <Button onClick={() => setOpen(true)}>Sign up</Button>
+        <>
+          <Button onClick={() => setOpen(true)}>Sign up</Button>
+          <Button onClick={() => setOpenSignIn(true)}>Sign in</Button>
+        </>
       )   }         
 
       {
