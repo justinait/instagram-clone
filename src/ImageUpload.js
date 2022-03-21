@@ -62,11 +62,9 @@ function ImageUpload(props) {//
   }
   
   return (
-    <div>
+    <div className="imgUploadContainer">
       
-      <progress value={progress} max="100"/>
-
-      <Input
+      <Input className="description"
         type="text"
         placeholder="Enter a description"
         value={description}
@@ -80,6 +78,9 @@ function ImageUpload(props) {//
       <Button onClick={handleUpload}>
         OK
       </Button>
+
+      <progress value={progress} max="100"/>
+
     </div>
   )
 }
