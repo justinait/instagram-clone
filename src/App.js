@@ -1,10 +1,11 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
 import Post from './Post.js';
-import {db, auth, storage} from './firebase.js';
+import {db, auth } from './firebase.js';
 import { Button, createTheme, Modal, Input } from '@mui/material';
 import { makeStyles, ThemeProvider } from '@mui/styles';
-
+import ImageUpload from './ImageUpload.js'
+import './ImageUpload.css';
 
 function getModalStyle(){
   const top = 50;
@@ -45,10 +46,8 @@ function App() {
     const unsuscribe = auth.onAuthStateChanged((authUser) => {
 
       if(authUser){   //user has logged in
-        
         console.log(authUser);
-        setUser(authUser)
-
+        setUser(authUser);
       } else {    //guest mode
         setUser(null);
       }
@@ -62,7 +61,7 @@ function App() {
 
   useEffect(() => {         //this is the posts inside the firebase.js
 
-    db.collection('posts').onSnapshot(s => {
+    db.collection('posts').orderBy('timestamp', 'desc').onSnapshot(s => {
       
       setPosts(s.docs.map(d => ({
         id: d.id,
@@ -101,6 +100,15 @@ function App() {
 
   return (
     <div>
+      { user ? (
+        <ImageUpload          username={user.displayName}        />
+      ): (
+        <>
+          <h3>Login to upload something</h3>
+          <Button onClick={() => setOpenSignIn(true)}>Sign in</Button>
+        </>
+      )}
+
       <Modal
         open={open}
         onClose={() => setOpen(false)}                 //onClose={handleClose}         //const handleClose = () => {    setOpen(false);  } //    
