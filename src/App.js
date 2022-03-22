@@ -43,7 +43,7 @@ function App() {
 
   useEffect(() => {
 
-    const unsuscribe = auth.onAuthStateChanged((authUser) => {
+    const unsubscribe = auth.onAuthStateChanged((authUser) => {
 
       if(authUser){   //user has logged in
         console.log(authUser);
@@ -55,22 +55,25 @@ function App() {
 
     return () => {
       //performe some cleanup actions //?
-      unsuscribe();
+      unsubscribe();
     }
   }, [user, username])
 
   useEffect(() => {         //this is the posts inside the firebase.js
 
-    db.collection('posts').orderBy('timestamp', 'desc').onSnapshot(s => {
-      
-      setPosts(s.docs.map(d => ({
-        id: d.id,
-        post: d.data()
-      })));
+    db
+      .collection('posts')
+      .orderBy('timestamp', 'desc')
+      .onSnapshot(s => {
+        
+        setPosts(s.docs.map(d => ({
+          id: d.id,
+          post: d.data()
+        })));
       
     })    //SNAPSHOT -> when there's a new document(post), the machine take a photo
 
-  }, []);//it runs when the page loads or refresh, and eery single time that a post change
+  }, []);//it runs when the page loads or refresh, and every single time that a post change
 
   
   const signUp = (event) => {
@@ -100,15 +103,7 @@ function App() {
 
   return (
     <div>
-      { user ? (
-        <ImageUpload          username={user.displayName}        />
-      ): (
-        <>
-          <h3>Login to upload something</h3>
-          <Button onClick={() => setOpenSignIn(true)}>Sign in</Button>
-        </>
-      )}
-
+      
       <Modal
         open={open}
         onClose={() => setOpen(false)}                 //onClose={handleClose}         //const handleClose = () => {    setOpen(false);  } //    
@@ -174,29 +169,43 @@ function App() {
 
       <div className="header">
         <img className="headerImg" src='instagram.png' alt="Instagram" />
-      </div>
-
-      {user ? (
+        
+        {user ? (
         <Button onClick={() => auth.signOut()}>Sign out</Button>
-      ) : (
+          ) : (
         <>
           <Button onClick={() => setOpen(true)}>Sign up</Button>
           <Button onClick={() => setOpenSignIn(true)}>Sign in</Button>
         </>
-      )   }         
-
-      {
-        posts.map( ({id, post}) => (
-          <Post
-            key={id}
-            avatarImgUrl = {post.avatarImgUrl}
-            username = {post.username}
-            imgUrl = {post.imgUrl}
-            textDescription = {post.textDescription}
-          />
-        ))
-      }
+        )   }         
       
+      </div>
+
+      <div className="posts">
+        {
+          posts.map( ({id, post}) => (
+            <Post
+              key={`post-${id}`}
+              avatarImgUrl = {post.avatarImgUrl}
+              username = {post.username}
+              imgUrl = {post.imgUrl}
+              textDescription = {post.textDescription}
+              postId = {id}
+              user = {user}
+            />
+          ))
+        }  
+      </div>
+      
+      { user ? (
+        <ImageUpload          username={user.displayName}        />
+      ): (
+        <>
+          <h3>Login to upload something</h3>
+          <Button onClick={() => setOpenSignIn(true)}>Sign in</Button>
+        </>
+      )}
+
     </div>
   );
 }

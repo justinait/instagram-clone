@@ -32,6 +32,10 @@
     margin-bottom: 10px;
 }
 
+.comments{
+    padding: 10px;
+}
+
 @media (min-width: 576px){
     .post{
         margin-bottom: 40px;

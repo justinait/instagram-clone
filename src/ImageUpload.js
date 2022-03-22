@@ -62,24 +62,19 @@ function ImageUpload(props) {//
   }
   
   return (
-    <div>
+    <div className="imageUploadContainer">
+      <progress className="uploadProgress" value={progress} max="100"/>
       
-      <progress value={progress} max="100"/>
-
-      <Input
+      <Input 
         type="text"
         placeholder="Enter a description"
         value={description}
         onChange={(e) => setDescription(e.target.value) }
       />
-
       {/* file picker */}
       <Input type="file" onChange={handleChange} />   {/* handlechanges saids what happen when you pick a FILE (el boton abrir dentro de la vetnanita dnd elegis)*/}
-      
-      {/* post button */}
-      <Button onClick={handleUpload}>
-        OK
-      </Button>
+
+      <Button onClick={handleUpload}>        POST      </Button>
     </div>
   )
 }
