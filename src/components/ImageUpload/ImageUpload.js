@@ -1,6 +1,6 @@
 import { Button, Input } from '@mui/material'
 import React, { useState } from 'react'
-import {db, auth, storage} from './firebase.js';
+import {db, auth, storage} from '../../firebase.js';
 import '@firebase/firestore'
 import 'firebase/compat/firestore';
 import firebase from 'firebase/compat/app';

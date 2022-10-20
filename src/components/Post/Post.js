@@ -1,11 +1,11 @@
 import React, {useState, useEffect} from 'react'
-import {db } from './firebase.js';
 import '@firebase/firestore'
 import 'firebase/compat/firestore';
 import firebase from 'firebase/compat/app';
 import './Post.css'
 import Avatar from "@mui/material/Avatar"   //import Avatar from "@babel/core"
 import { Button, Input } from '@mui/material';
+import { db } from '../../firebase';
 
 function Post(props) {
   const [comments, setComments] = useState([])
