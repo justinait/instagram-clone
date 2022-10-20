@@ -1,11 +1,13 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
 import Post from './Post.js';
-import {db, auth } from './firebase.js';
+import {db, auth, signInWithGoogle } from './firebase.js';
 import { Button, createTheme, Modal, Input } from '@mui/material';
 import { makeStyles, ThemeProvider } from '@mui/styles';
 import ImageUpload from './ImageUpload.js'
 import './ImageUpload.css';
+import Gif from './Gif.js'
+
 
 function getModalStyle(){
   const top = 50;
@@ -83,7 +85,7 @@ function App() {
       .createUserWithEmailAndPassword(email, password)
       .then((authUser) => {
         return authUser.user.updateProfile({
-          displayName: username                         //i dont get the difference btwn displayname and username   //literally theres no difference but i've to have both cause displayname is a property from auth, wich value is username
+          displayName: username
         })
       })
       .catch((error) => alert(error.message));   //create the message automatically 
@@ -93,7 +95,6 @@ function App() {
 
   const signIn = (event) => {
     event.preventDefault();
-    //que cheque si los datos son correctos y dependiendo de eso tira error o entra
     auth
       .signInWithEmailAndPassword(email, password)
       .catch((error) => alert(error.message));
@@ -103,10 +104,10 @@ function App() {
 
   return (
     <div>
-      
+      {/* <Gif /> */}
       <Modal
         open={open}
-        onClose={() => setOpen(false)}                 //onClose={handleClose}         //const handleClose = () => {    setOpen(false);  } //    
+        onClose={() => setOpen(false)}
       >
         <div style={modalStyle}  className={classes.paper}>
           <form className="signUp">
@@ -147,6 +148,11 @@ function App() {
             <center>
               <img src='./instagramIcon.png' alt="Instagram" width="30"/>    
             </center>
+
+            <button onClick={signInWithGoogle}>
+              Sign In with Google
+            </button>
+
             <Input
               placeholder="Email"
               type="email"
@@ -194,7 +200,7 @@ function App() {
               user = {user}
             />
           ))
-        }  
+        }
       </div>
       
       { user ? (

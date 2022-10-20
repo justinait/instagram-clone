@@ -5,7 +5,7 @@ import '@firebase/firestore'
 import 'firebase/compat/firestore';
 import firebase from 'firebase/compat/app';
 
-function ImageUpload(props) {//
+function ImageUpload({username}) {//
   
   const [description, setDescription] = useState('');
   const [image, setImage] = useState('');
@@ -46,7 +46,7 @@ function ImageUpload(props) {//
               timestamp: firebase.firestore.FieldValue.serverTimestamp(),
               textDescription: description,
               imgUrl: url,  //i got the image and i add it here, its part of the post
-              username: props.username    //all the data from the post is created here, except from username, i bring it here with props
+              username: username    //all the data from the post is created here, except from username, i bring it here with props
             });
 
             setProgress(0);
