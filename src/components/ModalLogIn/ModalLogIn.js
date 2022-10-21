@@ -1,60 +1,69 @@
-import { Button, createTheme, Modal, Input } from '@mui/material';
 import React, { useState } from 'react'
 import { auth } from '../../firebase';
+import { Form } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 
 function ModalLogIn() {
 
-    const [open, setOpen] = useState(false);
-    
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+  const [show, setShow] = useState(false);
 
-    const signIn = (event) => {
-        event.preventDefault();
-        auth
-        .signInWithEmailAndPassword(email, password)
-        .catch((error) => alert(error.message));
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);    
 
-        setOpen(false);
-    }
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-    return (
-        <Modal
-            open={open}
-            onClose={() => setOpen(false)}
-        >
-        <div
-            // style={modalStyle}  className={classes.paper}
-            >
-          <form className="signUp">
-            <center>
-              <img src='./instagramIcon.png' alt="Instagram" width="30"/>    
-            </center>
+  const signIn = (event) => {
+    event.preventDefault();
+    auth
+    .signInWithEmailAndPassword(email, password)
+    .catch((error) => alert(error.message));
 
-            {/* <button onClick={signInWithGoogle}>
-              Sign In with Google
-            </button> */}
+    handleClose();
+  }
 
-            <Input
+  return (
+    <>
+      <Button variant="primary" onClick={handleShow}>
+        SIGN IN
+      </Button>
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <img src='./instagramIcon.png' alt="Instagram" width="30"/>    
+        </Modal.Header>
+        <Modal.Body>
+          {/* <button onClick={signInWithGoogle}>
+            Sign In with Google
+          </button> */}
+            
+          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            <Form.Label>Email</Form.Label>
+            <Form.Control
               placeholder="Email"
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            <Input
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            <Form.Label>Contrasena</Form.Label>
+            <Form.Control
               placeholder="Password"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-            />      
-
-            <Button type="submit" onClick={signIn}>     OK     </Button>
-            
-          </form>
-          
-        </div>
+            />
+          </Form.Group>  
+        </Modal.Body>
+        <Modal.Footer>
+          <Button type="submit" onClick={signIn}>     OK     </Button>
+        </Modal.Footer>
       </Modal>
-    )
+    </>
+      
+  )
 }
 
 export default ModalLogIn

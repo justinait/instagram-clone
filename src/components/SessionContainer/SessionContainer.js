@@ -31,9 +31,9 @@ function SessionContainer() {
             user ? 
                 <Button onClick={() => auth.signOut()}>Log out</Button>
             :
-                <div> 
-                    <Button onClick=<ModalLogIn />>Sign up</Button>
-                    <Button onClick={() => <ModalSignUp />}>Log in</Button> 
+                <div>
+                    <ModalSignUp />
+                    <ModalLogIn />
                 </div>
             }  
         </div>
