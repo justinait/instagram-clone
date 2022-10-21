@@ -35,6 +35,14 @@
     padding: 10px;
 }
 
+.likeAndComment{
+    margin: 0;
+    padding: 8px;
+    display: flex;
+    justify-content: space-between;
+    width: 20%;
+}
+
 @media (min-width: 576px){
     .post{
         margin-bottom: 40px;

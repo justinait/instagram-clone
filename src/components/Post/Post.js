@@ -6,6 +6,8 @@ import './Post.css'
 import Avatar from "@mui/material/Avatar"   //import Avatar from "@babel/core"
 import { Button, Input } from '@mui/material';
 import { db } from '../../firebase';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 
 function Post(props) {
   const [comments, setComments] = useState([])
@@ -50,19 +52,23 @@ function Post(props) {
     <div className="post">
 
       <div className="postHeader">
-          
         <Avatar
           className="postAvatar"
           alt={props.username}
           src= {props.avatarImgUrl}
         />
-
         <h3 className="postUsername">{props.username}</h3>
-
       </div>
 
       <img className="postImg" src={props.imgUrl} alt="Foto" />
-      
+
+
+      {props.user &&      
+        <div className="likeAndComment">
+          < FavoriteBorderIcon fontSize="large" />
+          < ChatBubbleOutlineIcon fontSize="large" />
+        </div>
+      }
       <h4 className="postDescription">
         <strong>{props.username} </strong>
         {props.textDescription}
