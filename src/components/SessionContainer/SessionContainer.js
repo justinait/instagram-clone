@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react'
 import { auth } from '../../firebase';
 import ModalLogIn from '../ModalLogIn/ModalLogIn'
 import ModalSignUp from '../ModalSignUp/ModalSignUp'
+import Avatar from "@mui/material/Avatar"
+import LogoutIcon from '@mui/icons-material/Logout';
 
 function SessionContainer() {
     
@@ -28,10 +30,19 @@ function SessionContainer() {
     return (
         <div>
             {
-            user ? 
-                <Button onClick={() => auth.signOut()}>Log out</Button>
+            user ?
+                <div className='rightNavbar'>
+                    <Avatar
+                        className="postAvatar"
+                        alt={user.username}
+                        src= {user.avatarImgUrl}
+                    />
+                    <Button onClick={() => auth.signOut()}>
+                        <LogoutIcon fontSize="large" color="dark" />
+                    </Button>
+                </div>
             :
-                <div>
+                <div className='rightNavbar'>
                     <ModalSignUp />
                     <ModalLogIn />
                 </div>

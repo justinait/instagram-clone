@@ -6,29 +6,6 @@ body{
   background-color: #fafafa;
 }
 
-.header{
-  position: sticky;
-  top: 0;
-  z-index: 1;
-  background-color: #fff;
-  padding: 10px;
-  border-bottom: 1px solid lightgray;
-  object-fit: contain;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.headerImg {
-  object-fit: contain;
-  width: 130px;
-}
-
-.signUp{
-  display: flex;
-  flex-direction: column;
-  padding: 5px;
-}
 
 .posts {
   padding:20px; 

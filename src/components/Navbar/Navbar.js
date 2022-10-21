@@ -1,15 +1,17 @@
 import React from 'react'
+import './Navbar.css'
 import SessionContainer from '../SessionContainer/SessionContainer.js';
 
 function Navbar() {
 
   return (
     
-    <div className="header">
+    <div className="navbar">
         
-        <img className="headerImg" src='instagram.png' alt="Instagram" />    
-        < SessionContainer />
+      <img className="titleImg" src='instagram.png' alt="Instagram" />    
+      < SessionContainer />
       {/* <Gif /> */}
+      
     </div>
   )
 }
