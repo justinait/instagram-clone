@@ -3,7 +3,7 @@ import '@firebase/firestore'
 import 'firebase/compat/firestore';
 import firebase from 'firebase/compat/app';
 import './Post.css'
-import Avatar from "@mui/material/Avatar"   //import Avatar from "@babel/core"
+import Avatar from "@mui/material/Avatar"
 import { Button, Input } from '@mui/material';
 import { db } from '../../firebase';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
