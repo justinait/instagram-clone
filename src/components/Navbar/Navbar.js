@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import './Navbar.css'
 import SessionContainer from '../SessionContainer/SessionContainer.js';
 import { SessionContext } from '../../context/SessionContext';
-import ImageUpload from '../ImageUpload/ImageUpload';
+import ImageUploadModal from '../ImageUploadModal/ImageUploadModal';
 
 function Navbar() {
 
@@ -19,7 +19,7 @@ function Navbar() {
       </div>
       
       { 
-        localUser && <ImageUpload username={localUser.displayName} />
+        localUser && <ImageUploadModal username={localUser.displayName} />
       }
     </div>
     

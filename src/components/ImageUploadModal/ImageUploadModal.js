@@ -1,12 +1,14 @@
-import { Button, Input } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import { Input } from '@mui/material'
 import {db, storage} from '../../firebase.js';
 import '@firebase/firestore'
 import 'firebase/compat/firestore';
 import firebase from 'firebase/compat/app';
 
-function ImageUpload({username}) {//
-  
+function ImageUploadModal({username}) {
+    
   const [description, setDescription] = useState('');
   const [image, setImage] = useState('');
   const [progress, setProgress] = useState('');
@@ -59,22 +61,45 @@ function ImageUpload({username}) {//
     )
   }
   
-  return (
-    <div className="imageUploadContainer">
-      <progress className="uploadProgress" value={progress} max="100"/>
-      
-      <Input 
-        type="text"
-        placeholder="Enter a description"
-        value={description}
-        onChange={(e) => setDescription(e.target.value) }
-      />
-      {/* file picker */}
-      <Input type="file" onChange={handleChange} />   {/* handlechanges saids what happen when you pick a FILE (el boton abrir dentro de la vetnanita dnd elegis)*/}
+  const [show, setShow] = useState(false);
 
-      <Button onClick={handleUpload}>        POST      </Button>
-    </div>
-  )
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  return (
+    <>
+      <Button variant="primary" onClick={handleShow}>
+        + Post a new photo
+      </Button>
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>New Photo</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+        <progress className="uploadProgress" value={progress} max="100"/>
+
+        <Input
+            type="text"
+            placeholder="Enter a description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value) }
+        />
+        {/* file picker */}
+        <Input type="file" onChange={handleChange} />
+
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Cancel
+          </Button>
+          <Button variant="primary" onClick={handleUpload}>
+            Post
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
+  );
 }
 
-export default ImageUpload
+export default ImageUploadModal;
