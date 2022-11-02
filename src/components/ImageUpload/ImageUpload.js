@@ -45,8 +45,8 @@ function ImageUpload({username}) {//
             db.collection('posts').add({    //this is the posts inside the firebase.js
               timestamp: firebase.firestore.FieldValue.serverTimestamp(),
               textDescription: description,
-              imgUrl: url,  //i got the image and i add it here, its part of the post
-              username: username    //all the data from the post is created here, except from username, i bring it here with props
+              imgUrl: url,
+              username: username
             });
 
             setProgress(0);
@@ -54,11 +54,9 @@ function ImageUpload({username}) {//
             setImage('');
 
           })
-          //why not set(0) here ?
         }
 
     )
-    //lease onStateChanged ... as it keep changing, as it keep updating, u keep giving me snapshots so i can see the process
   }
   
   return (

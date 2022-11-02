@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import '@firebase/firestore'
 import 'firebase/compat/firestore';
 import firebase from 'firebase/compat/app';
@@ -8,13 +8,17 @@ import { Button, Input } from '@mui/material';
 import { db } from '../../firebase';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
+import { SessionContext } from '../../context/SessionContext';
 
-function Post(props) {
+function Post({post, postId}) {
+
+  const { localUser } = useContext(SessionContext)
+
   const [comments, setComments] = useState([])
   const [comment, setComment] = useState('')
-  let postId = props.postId;
 
   useEffect(()=> {
+
     let unsubscribe;
       
     if(postId) {
@@ -41,7 +45,7 @@ function Post(props) {
       .collection("comments")
       .add({
        text: comment,
-       username: props.user.displayName,       //username: props.username//noo, not the poster username, the username from who logged in
+       username: localUser.displayName,
        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
     })
 
@@ -54,24 +58,24 @@ function Post(props) {
       <div className="postHeader">
         <Avatar
           className="postAvatar"
-          alt={props.username}
-          src= {props.avatarImgUrl}
+          alt={post.username}
+          src= {post.avatarImgUrl}
         />
-        <h3 className="postUsername">{props.username}</h3>
+        <h3 className="postUsername">{post.username}</h3>
       </div>
 
-      <img className="postImg" src={props.imgUrl} alt="Foto" />
+      <img className="postImg" src={post.imgUrl} alt="Foto" />
 
-
-      {props.user &&      
+      {
+      localUser &&      
         <div className="likeAndComment">
           < FavoriteBorderIcon fontSize="large" />
           < ChatBubbleOutlineIcon fontSize="large" />
         </div>
       }
       <h4 className="postDescription">
-        <strong>{props.username} </strong>
-        {props.textDescription}
+        <strong>{post.username} </strong>
+        {post.textDescription}
       </h4>
 
       <div className='comments'>
@@ -84,7 +88,7 @@ function Post(props) {
         ))}
       </div>
 
-      {props.user && (    
+      {localUser && (    
         <form className="addCommentContainer">
           <Input
             className="addComment"

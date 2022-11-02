@@ -8,13 +8,9 @@ function Posts({postsList}) {
       {
         postsList.map( ({id, post}) => (
           <Post
+            post = {post}
             key={`post-${id}`}
-            avatarImgUrl = {post.avatarImgUrl}
-            username = {post.username}
-            imgUrl = {post.imgUrl}
-            textDescription = {post.textDescription}
             postId = {id}
-            // user = {user}
           />
         ))
       }

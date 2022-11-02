@@ -1,10 +1,13 @@
-import React, { useState } from 'react'
-import { auth } from '../../firebase';
+import React, { useContext, useState } from 'react'
 import { Form } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import { SessionContext } from '../../context/SessionContext';
+import { auth } from '../../firebase';
 
 function ModalLogIn() {
+
+  const { user } = useContext(SessionContext)
 
   const [show, setShow] = useState(false);
 
@@ -16,10 +19,11 @@ function ModalLogIn() {
 
   const signIn = (event) => {
     event.preventDefault();
+    
     auth
     .signInWithEmailAndPassword(email, password)
     .catch((error) => alert(error.message));
-
+    
     handleClose();
   }
 
@@ -47,7 +51,7 @@ function ModalLogIn() {
               onChange={(e) => setEmail(e.target.value)}
             />
           </Form.Group>
-          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+          <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
             <Form.Label>Contrasena</Form.Label>
             <Form.Control
               placeholder="Password"
@@ -57,9 +61,9 @@ function ModalLogIn() {
             />
           </Form.Group>  
         </Modal.Body>
-        <Modal.Footer>
-          <Button type="submit" onClick={signIn}>     OK     </Button>
-        </Modal.Footer>
+      <Modal.Footer>
+        <Button type="submit" onClick={signIn}>     OK     </Button>
+      </Modal.Footer>
       </Modal>
     </>
       

@@ -26,7 +26,7 @@ function ModalSignUp() {
         displayName: username
         })
     })
-    .catch((error) => alert(error.message));   //create the message automatically 
+    .catch((error) => alert(error.message));
     
     handleClose();
   }
@@ -52,7 +52,7 @@ function ModalSignUp() {
                 autoFocus
                 />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
                 <Form.Label>Email</Form.Label>
                 <Form.Control
                     placeholder="Email"
@@ -61,7 +61,7 @@ function ModalSignUp() {
                     onChange={(e) => setEmail(e.target.value)}
                 />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput3">
                 <Form.Label>Contrasena</Form.Label>
                 <Form.Control
                     placeholder="Password"

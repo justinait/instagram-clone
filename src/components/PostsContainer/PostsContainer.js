@@ -6,7 +6,7 @@ function PostsContainer() {
 
     const [posts, setPosts] = useState([]);
 
-    useEffect(() => {         //this is the posts inside the firebase.js
+    useEffect(() => {
   
       db
         .collection('posts')

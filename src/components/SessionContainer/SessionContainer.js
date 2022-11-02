@@ -1,15 +1,18 @@
 import { Button } from '@mui/material';
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { auth } from '../../firebase';
 import ModalLogIn from '../ModalLogIn/ModalLogIn'
 import ModalSignUp from '../ModalSignUp/ModalSignUp'
 import Avatar from "@mui/material/Avatar"
 import LogoutIcon from '@mui/icons-material/Logout';
 import '../Navbar/Navbar.css'
+import { SessionContext } from '../../context/SessionContext';
 
 function SessionContainer() {
     
     const [user, setUser] = useState(null);
+
+    const { saveUser } = useContext(SessionContext)
 
     useEffect(() => {
 
@@ -17,8 +20,10 @@ function SessionContainer() {
 
             if(authUser){
                 setUser(authUser);
+                saveUser(user)
             } else {
                 setUser(null);
+                saveUser(user)
             }
         })
 
