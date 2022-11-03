@@ -1,15 +1,48 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
-import { SessionContext } from '../../context/SessionContext';
+import { db } from '../../firebase';
 
 function Profile() {
 
-    const { postsList } = useContext(SessionContext)
     const { username } = useParams();
 
+    const [posts, setPosts] = useState([]);
+    const [userPosts, setUserPosts] = useState([]);
+
+    const getUserPosts = () => {
+
+        db
+        .collection('posts')
+        .orderBy('timestamp', 'desc')
+        .onSnapshot(s => {
+          setPosts(s.docs.map(d => ({
+            id: d.id,
+            post: d.data()
+        })));  
+        })
+
+        let aux = posts.filter( (e) => {
+            return e.post.username == username;
+        })
+
+        setUserPosts(aux)
+        
+        return userPosts;
+    }
+
+    useEffect(() => {
+        setUserPosts([]);
+        getUserPosts();
+    }, [username]);
+    
   return (
     <div>
         <h1>{username}</h1>
+        {
+           userPosts.map((e)=> {
+            return <img src={e.post.imgUrl} alt={e.post.textDescription} />
+           })
+        }
     </div>
   )
 }
