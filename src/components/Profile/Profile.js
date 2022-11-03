@@ -40,7 +40,7 @@ function Profile() {
         <h1>{username}</h1>
         {
            userPosts.map((e)=> {
-            return <img src={e.post.imgUrl} alt={e.post.textDescription} />
+            return <img key={e.id} src={e.post.imgUrl} alt={e.post.textDescription} />
            })
         }
     </div>

@@ -84,8 +84,8 @@ function Post({post, postId}) {
 
       <div className='comments'>
         
-        {comments.map((comment) => (
-          <p> 
+        {comments.map((comment, i) => (
+          <p key={`comment-${i}`}> 
             <strong>            {comment.username}            </strong>
             {comment.text}
           </p>
