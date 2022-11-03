@@ -9,6 +9,7 @@ import { db } from '../../firebase';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import { SessionContext } from '../../context/SessionContext';
+import { Link } from 'react-router-dom';
 
 function Post({post, postId}) {
 
@@ -55,16 +56,19 @@ function Post({post, postId}) {
   return (
     <div className="post">
 
-      <div className="postHeader">
-        <Avatar
-          className="postAvatar"
-          alt={post.username}
-          src= {post.avatarImgUrl}
-        />
-        <h3 className="postUsername">{post.username}</h3>
-      </div>
+      <Link to={`/${post.username}`}>
+        <div className="postHeader">
+          <Avatar
+            className="postAvatar"
+            alt={post.username}
+            src= {post.avatarImgUrl}
+          />
+          <h3 className="postUsername">{post.username}</h3>
+        </div>
+      </Link>
 
       <img className="postImg" src={post.imgUrl} alt="Foto" />
+      <div className='descriptionBox'>
 
       {
       localUser &&      
@@ -107,6 +111,7 @@ function Post({post, postId}) {
           </Button>
         </form>
       )}
+      </div>
 
     </div>
   )

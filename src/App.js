@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import PostsContainer from './components/PostsContainer/PostsContainer';
-import ImageUpload from './components/ImageUpload/ImageUpload.js'
+import Profile from './components/Profile/Profile';
 import SessionProvider from './context/SessionContext';
 
 function App() {
@@ -10,12 +11,16 @@ function App() {
 
     <div>
       <SessionProvider>
-
-        <Navbar/>
-        <PostsContainer />
-
+        <BrowserRouter>
+          <Navbar/>
+          <Routes>
+            <Route path='/' element={<PostsContainer />} />
+            <Route path='/:username' element={ <Profile /> } />
+          </Routes>
+        
+        </BrowserRouter>
       </SessionProvider>
-
+      
     </div>
     
   );

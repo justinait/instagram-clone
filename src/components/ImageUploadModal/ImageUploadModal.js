@@ -6,6 +6,8 @@ import {db, storage} from '../../firebase.js';
 import '@firebase/firestore'
 import 'firebase/compat/firestore';
 import firebase from 'firebase/compat/app';
+import AddIcon from '@mui/icons-material/Add';
+import HomeIcon from '@mui/icons-material/Home';
 
 function ImageUploadModal({username}) {
     
@@ -22,8 +24,7 @@ function ImageUploadModal({username}) {
   const handleUpload = (event) => {
     //push to firebase
     const uploadTask = storage.ref(`images/${image.name}`).put(image);
-    //acces to storage in firebase, get a reference to this img. we r also creating a folder rn
-    //image.name is the filename selected
+    
     uploadTask.on(
       "state_changed",
       (snapshot) => {
@@ -44,21 +45,22 @@ function ImageUploadModal({username}) {
           .getDownloadURL()
           .then(url => {
             //post the image inside the db
-            db.collection('posts').add({    //this is the posts inside the firebase.js
+            db.collection('posts').add({
               timestamp: firebase.firestore.FieldValue.serverTimestamp(),
               textDescription: description,
               imgUrl: url,
               username: username
+          
             });
 
-            setProgress(0);
-            setDescription('');
-            setImage('');
+          setProgress(0);
+          setDescription('');
+          setImage('');
 
-          })
-        }
-
+        })
+      }
     )
+    handleClose();
   }
   
   const [show, setShow] = useState(false);
@@ -69,7 +71,7 @@ function ImageUploadModal({username}) {
   return (
     <>
       <Button variant="primary" onClick={handleShow}>
-        + Post a new photo
+        < AddIcon fontSize="large" />
       </Button>
 
       <Modal show={show} onHide={handleClose}>
@@ -77,16 +79,16 @@ function ImageUploadModal({username}) {
           <Modal.Title>New Photo</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        <progress className="uploadProgress" value={progress} max="100"/>
+          <progress className="uploadProgress" value={progress} max="100"/>
 
-        <Input
+          <Input
             type="text"
             placeholder="Enter a description"
             value={description}
             onChange={(e) => setDescription(e.target.value) }
-        />
-        {/* file picker */}
-        <Input type="file" onChange={handleChange} />
+          />
+          {/* file picker */}
+          <Input type="file" onChange={handleChange} />
 
         </Modal.Body>
         <Modal.Footer>
