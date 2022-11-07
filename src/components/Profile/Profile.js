@@ -1,3 +1,4 @@
+import { collection, getDocs } from '@firebase/firestore';
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { db } from '../../firebase';
@@ -6,23 +7,22 @@ function Profile() {
 
     const { username } = useParams();
 
-    const [posts, setPosts] = useState([]);
     const [userPosts, setUserPosts] = useState([]);
 
-    const getUserPosts = () => {
+    const getUserPosts = async () => {
 
-        db
-        .collection('posts')
-        .orderBy('timestamp', 'desc')
-        .onSnapshot(s => {
-          setPosts(s.docs.map(d => ({
-            id: d.id,
-            post: d.data()
-        })));  
+        const postCollection = collection(db, 'posts');
+        const postSnapshot = await getDocs(postCollection);
+
+        const postList = postSnapshot.docs.map( (e) => {
+            let post = e.data();
+            post.id = e.id;
+
+            return post;
         })
 
-        let aux = posts.filter( (e) => {
-            return e.post.username == username;
+        let aux = postList.filter( (e) => {
+            return e.username == username;
         })
 
         setUserPosts(aux)
@@ -40,7 +40,7 @@ function Profile() {
         <h1>{username}</h1>
         {
            userPosts.map((e)=> {
-            return <img key={e.id} src={e.post.imgUrl} alt={e.post.textDescription} />
+            return <img key={e.id} src={e.imgUrl} alt={e.textDescription} />
            })
         }
     </div>
