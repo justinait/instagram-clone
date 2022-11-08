@@ -1,0 +1,33 @@
+.profileContainer {
+    background-color: #fafafa;
+}
+
+.profileInfo {
+    display: flex;
+    width: 80%;
+    padding: 5%;
+    justify-content: space-between;
+}
+
+.profilePost {
+    width: 33.3%;
+    justify-content: flex-start;
+    padding: 1%;
+    height: 25rem;
+}
+
+.profileFeed {
+    padding: 8%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.profileAvatar {
+    width: 300px;
+    height: 300px;
+}
+
+h1 {
+    text-transform: uppercase;
+}

@@ -40,7 +40,8 @@
     padding: 8px;
     display: flex;
     justify-content: space-between;
-    width: 20%;
+    width: 27%;
+    align-items: center;
 }
 
 @media (min-width: 576px){

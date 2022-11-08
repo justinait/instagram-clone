@@ -2,12 +2,16 @@ import { collection, getDocs } from '@firebase/firestore';
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { db } from '../../firebase';
+import './Profile.css'
+import Avatar from "@mui/material/Avatar"
 
 function Profile() {
 
     const { username } = useParams();
 
     const [userPosts, setUserPosts] = useState([]);
+    const [avatar, setAvatar] = useState();
+    const [amount, setAmount] = useState(0);
 
     const getUserPosts = async () => {
 
@@ -22,27 +26,44 @@ function Profile() {
         })
 
         let aux = postList.filter( (e) => {
+            setAvatar(e.avatarImgUrl);
             return e.username == username;
         })
-
-        setUserPosts(aux)
+        setAmount(aux.length);
+        setUserPosts(aux);
         
         return userPosts;
     }
 
     useEffect(() => {
-        setUserPosts([]);
+        setUserPosts([]);//esto esta de mas, vd?
         getUserPosts();
+        setAmount(0);
     }, [username]);
     
   return (
-    <div>
-        <h1>{username}</h1>
+    <div className='profileContainer'>
+
+        <div className='profileInfo'>
+            <Avatar
+                className="profileAvatar"
+                alt={username}
+                src= {avatar}
+            />    
+            <h1>{username}</h1>
+            <h3>{amount} publicaciones</h3>
+        </div>
+        
+        <div className='profileFeed'>
         {
            userPosts.map((e)=> {
-            return <img key={e.id} src={e.imgUrl} alt={e.textDescription} />
+            return (
+                <img className='profilePost' key={e.id} src={e.imgUrl} alt={e.textDescription} />
+            )
            })
         }
+        </div>
+        
     </div>
   )
 }

@@ -7,9 +7,11 @@ import Avatar from "@mui/material/Avatar"
 import { Button, Input } from '@mui/material';
 import { db } from '../../firebase';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import { SessionContext } from '../../context/SessionContext';
 import { Link } from 'react-router-dom';
+import ToggleButton from '@mui/material/ToggleButton';
 
 function Post({post, postId}) {
 
@@ -17,6 +19,7 @@ function Post({post, postId}) {
 
   const [comments, setComments] = useState([])
   const [comment, setComment] = useState('')
+  const [selected, setSelected] = React.useState(false);
 
   useEffect(()=> {
 
@@ -52,7 +55,7 @@ function Post({post, postId}) {
 
     setComment('');
   }
-  
+
   return (
     <div className="post">
 
@@ -73,7 +76,16 @@ function Post({post, postId}) {
       {
       localUser &&      
         <div className="likeAndComment">
-          < FavoriteBorderIcon fontSize="large" />
+          <ToggleButton
+            value="check"
+            selected={selected}
+            onChange={() => {
+              setSelected(!selected);
+            }}
+          >
+            < FavoriteBorderIcon fontSize="large" />
+          </ToggleButton>
+
           < ChatBubbleOutlineIcon fontSize="large" />
         </div>
       }
