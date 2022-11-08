@@ -60,7 +60,7 @@ function Post({post, postId}) {
   return (
     <div className="post">
 
-      <Link to={`/${post.username}`}>
+      <Link to={`/${post.username}`} style={{textDecoration: "none", color: 'black'}}>
         <div className="postHeader">
           <Avatar
             className="postAvatar"
@@ -92,7 +92,9 @@ function Post({post, postId}) {
         </div>
       }
       <h4 className="postDescription">
-        <strong>{post.username} </strong>
+        <Link to={`/${post.username}`} style={{textDecoration: "none", color: 'black'}}>
+          <strong> {post.username}</strong>
+        </Link>
         {post.textDescription}
       </h4>
 
@@ -104,6 +106,7 @@ function Post({post, postId}) {
             {comment.text}
           </p>
         ))}
+        
       </div>
 
       {localUser && (    

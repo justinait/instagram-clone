@@ -27,12 +27,16 @@
 }
 
 .postDescription{
-    padding: 10px;
     font-weight: normal;
 }
+.postDescription strong,
+.comments,
+.addCommentContainer {
+    padding: 4%;
+}
 
-.comments{
-    padding: 10px;
+.addCommentContainer {
+    padding-top: 0;
 }
 
 .likeAndComment{
