@@ -38,11 +38,17 @@ function SessionContainer() {
             {
             user ?
                 <div className='rightNavbar'>
+                    
                     <Avatar
                         className="postAvatar"
                         alt={user.username}
                         src= {user.avatarImgUrl}
                     />
+                    <h3>
+                        {console.log(user)}
+                        {user.displayName}
+                    </h3>
+
                     <Button onClick={() => auth.signOut()}>
                         <LogoutIcon fontSize="large" color="dark" />
                     </Button>

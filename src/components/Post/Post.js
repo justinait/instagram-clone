@@ -12,6 +12,7 @@ import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import { SessionContext } from '../../context/SessionContext';
 import { Link } from 'react-router-dom';
 import ToggleButton from '@mui/material/ToggleButton';
+import PostDetail from '../PostDetail/PostDetail';
 
 function Post({post, postId}) {
 
@@ -19,7 +20,7 @@ function Post({post, postId}) {
 
   const [comments, setComments] = useState([])
   const [comment, setComment] = useState('')
-  const [selected, setSelected] = React.useState(false);
+  const [selected, setSelected] = useState(false);
 
   useEffect(()=> {
 
@@ -70,7 +71,8 @@ function Post({post, postId}) {
         </div>
       </Link>
 
-      <img className="postImg" src={post.imgUrl} alt="Foto" />
+      < PostDetail post={post} comments={comments}/>
+
       <div className='descriptionBox'>
 
       {
