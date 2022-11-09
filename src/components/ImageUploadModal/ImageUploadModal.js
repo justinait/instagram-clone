@@ -7,7 +7,6 @@ import '@firebase/firestore'
 import 'firebase/compat/firestore';
 import firebase from 'firebase/compat/app';
 import AddIcon from '@mui/icons-material/Add';
-import HomeIcon from '@mui/icons-material/Home';
 
 function ImageUploadModal({username}) {
     
@@ -70,8 +69,8 @@ function ImageUploadModal({username}) {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
-        < AddIcon fontSize="large" />
+      <Button variant="outline-dark" size="sm" onClick={handleShow}>
+        < AddIcon fontSize="large"/>
       </Button>
 
       <Modal show={show} onHide={handleClose}>

@@ -3,7 +3,7 @@ import { Form } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { SessionContext } from '../../context/SessionContext';
-import { auth } from '../../firebase';
+import { auth, signInWithGoogle } from '../../firebase';
 
 function ModalLogIn() {
 

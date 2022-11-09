@@ -10,6 +10,8 @@ import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import HomeIcon from '@mui/icons-material/Home';
 import { Link } from 'react-router-dom';
+import SendIcon from '@mui/icons-material/Send';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -37,7 +39,7 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
 }));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: 'inherit',
+  color: 'white',
   '& .MuiInputBase-input': {
     padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
@@ -61,11 +63,9 @@ function Navbar() {
   return (
 
     <div className="navbar">
+
       <Link to='/'> <img className="titleImg" src='instagram.png' alt="Instagram" /> </Link>
 
-      { 
-        localUser && <ImageUploadModal username={localUser.displayName} />
-      }
       
       <Box>
         <AppBar position="static">
@@ -81,8 +81,17 @@ function Navbar() {
         </AppBar>
       </Box>
 
-      <Link to='/'> < HomeIcon /> </Link>
-      < SessionContainer />
+      <div className='rightNavbar'>
+        <Link to='/'> < HomeIcon fontSize="large" style={{ color: 'black' }} /> </Link>
+        < SendIcon  fontSize="large"/>
+        { 
+          localUser && <ImageUploadModal username={localUser.displayName} />
+        }
+        < FavoriteBorderIcon fontSize="large"/>
+
+        < SessionContainer />
+        
+      </div>
       
     </div>
     

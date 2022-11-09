@@ -37,7 +37,7 @@ function SessionContainer() {
         <div>
             {
             user ?
-                <div className='rightNavbar'>
+                <div className='sessionNavbar'>
                     
                     <Avatar
                         className="postAvatar"
@@ -53,7 +53,7 @@ function SessionContainer() {
                     </Button>
                 </div>
             :
-                <div className='rightNavbar'>
+                <div className='sessionNavbar'>
                     <ModalSignUp />
                     <ModalLogIn />
                 </div>
