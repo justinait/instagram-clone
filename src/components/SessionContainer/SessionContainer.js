@@ -45,7 +45,6 @@ function SessionContainer() {
                         src= {user.avatarImgUrl}
                     />
                     <h3>
-                        {console.log(user)}
                         {user.displayName}
                     </h3>
 

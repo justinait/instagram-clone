@@ -8,7 +8,15 @@ function ModalSignUp() {
   
   const [show, setShow] = useState(false);
 
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    
+    setShow(false);
+    
+    setEmail('');
+    setUsername('');
+    setPassword('');
+    
+  }
   const handleShow = () => setShow(true);
 
   const [email, setEmail] = useState('');
