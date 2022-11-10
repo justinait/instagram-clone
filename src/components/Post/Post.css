@@ -28,12 +28,17 @@
 
 .postDescription{
     font-weight: normal;
+    margin-top: 3%;
 }
 
 .postDescription strong,
-.comments,
+/* .comments, */
 .addCommentContainer {
     padding: 4%;
+}
+
+.comments {
+    padding: 1% 4%;
 }
 
 .addCommentContainer {
@@ -47,6 +52,13 @@
     justify-content: space-between;
     width: 27%;
     align-items: center;
+}
+
+.postsOptions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 10px;
 }
 
 @media (min-width: 576px){

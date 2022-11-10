@@ -49,7 +49,7 @@ function SessionContainer() {
                     </h3>
 
                     <Button onClick={() => auth.signOut()}>
-                        <LogoutIcon fontSize="large" color="dark" />
+                        <LogoutIcon fontSize="large" style={{color: 'black'}}/>
                     </Button>
                 </div>
             :

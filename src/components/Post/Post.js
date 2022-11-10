@@ -13,6 +13,7 @@ import { SessionContext } from '../../context/SessionContext';
 import { Link } from 'react-router-dom';
 import ToggleButton from '@mui/material/ToggleButton';
 import PostDetail from '../PostDetail/PostDetail';
+import DeleteModal from '../DeleteModal/DeleteModal';
 
 function Post({post, postId}) {
 
@@ -77,20 +78,29 @@ function Post({post, postId}) {
 
       {
       localUser &&      
-        <div className="likeAndComment">
-          <ToggleButton
-            value="check"
-            selected={selected}
-            onChange={() => {
-              setSelected(!selected);
-            }}
-          >
-            < FavoriteBorderIcon fontSize="large" />
-          </ToggleButton>
+        <div className='postsOptions'>
+          <div className="likeAndComment">
+            <ToggleButton
+              value="check"
+              selected={selected}
+              onChange={() => {
+                setSelected(!selected);
+              }}
+            >
+              < FavoriteBorderIcon fontSize="large" />
+            </ToggleButton>
 
-          < ChatBubbleOutlineIcon fontSize="large" />
+            < ChatBubbleOutlineIcon fontSize="large" />
+          
+          </div>
+          <div>
+            {
+              post.username == localUser.displayName &&  < DeleteModal id={postId} />
+            }
+          </div>
         </div>
       }
+
       <h4 className="postDescription">
         <Link to={`/${post.username}`} style={{textDecoration: "none", color: 'black'}}>
           <strong> {post.username}</strong>
