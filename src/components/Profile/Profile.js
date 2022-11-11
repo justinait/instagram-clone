@@ -26,12 +26,13 @@ function Profile() {
         })
 
         let aux = postList.filter( (e) => {
-            setAvatar(e.avatarImgUrl);
             return e.username == username;
         })
+
         setAmount(aux.length);
         setUserPosts(aux);
-        
+        setAvatar(aux[0].avatarImgUrl);
+
         return userPosts;
     }
 
