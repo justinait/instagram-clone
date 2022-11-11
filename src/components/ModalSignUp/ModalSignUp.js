@@ -41,7 +41,7 @@ function ModalSignUp() {
     
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
+      <Button variant="light" onClick={handleShow}>
         SIGN UP
       </Button>
 

@@ -1,13 +1,10 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import { Form } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { SessionContext } from '../../context/SessionContext';
 import { auth, signInWithGoogle } from '../../firebase';
 
 function ModalLogIn() {
-
-  const { user } = useContext(SessionContext)
 
   const [show, setShow] = useState(false);
 
@@ -37,7 +34,7 @@ function ModalLogIn() {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
+      <Button variant="outline-secondary" onClick={handleShow}>
         SIGN IN
       </Button>
 
