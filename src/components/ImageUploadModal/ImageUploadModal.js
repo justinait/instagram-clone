@@ -70,7 +70,7 @@ function ImageUploadModal({username}) {
   return (
     <>
       <Button variant="outline-dark" size="sm" onClick={handleShow}>
-        < AddIcon fontSize="large"/>
+        < AddIcon/>
       </Button>
 
       <Modal show={show} onHide={handleClose}>

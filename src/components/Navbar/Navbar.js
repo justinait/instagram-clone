@@ -82,11 +82,18 @@ function Navbar() {
       </Box>
 
       <div className='rightNavbar'>
-        <Link to='/'> < HomeIcon fontSize="large" style={{ color: 'black' }} /> </Link>
-        < SendIcon  fontSize="large"/>
+
+        <Link to='/'> 
+          < HomeIcon fontSize="large" style={{ color: 'black' }} />
+        </Link>
+        
+        {/* addIcon */}
         { 
           localUser && <ImageUploadModal username={localUser.displayName} />
         }
+
+        < SendIcon  fontSize="large"/>
+        
         < FavoriteBorderIcon fontSize="large"/>
 
         < SessionContainer />

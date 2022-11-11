@@ -3,10 +3,10 @@ import React, { useContext, useEffect, useState } from 'react'
 import { auth } from '../../firebase';
 import ModalLogIn from '../ModalLogIn/ModalLogIn'
 import ModalSignUp from '../ModalSignUp/ModalSignUp'
-import Avatar from "@mui/material/Avatar"
 import LogoutIcon from '@mui/icons-material/Logout';
 import '../Navbar/Navbar.css'
 import { SessionContext } from '../../context/SessionContext';
+import { Link } from 'react-router-dom';
 
 function SessionContainer() {
     
@@ -38,19 +38,17 @@ function SessionContainer() {
             {
             user ?
                 <div className='sessionNavbar'>
-                    
-                    <Avatar
-                        className="postAvatar"
-                        alt={user.username}
-                        src= {user.avatarImgUrl}
-                    />
-                    <h3>
-                        {user.displayName}
-                    </h3>
+
+                    <Link to={`/${user.displayName}`} style={{textDecoration: "none", color: 'black'}}>
+                        <h3>
+                            {user.displayName}
+                        </h3>
+                    </Link>
 
                     <Button onClick={() => auth.signOut()}>
                         <LogoutIcon fontSize="large" style={{color: 'black'}}/>
                     </Button>
+
                 </div>
             :
                 <div className='sessionNavbar'>
