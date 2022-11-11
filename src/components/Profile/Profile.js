@@ -50,6 +50,7 @@ function Profile() {
                 className="profileAvatar"
                 alt={username}
                 src= {avatar}
+                sx={{ width: 256, height: 256 }}
             />    
             <h1>{username}</h1>
             <h3>{amount} publicaciones</h3>
