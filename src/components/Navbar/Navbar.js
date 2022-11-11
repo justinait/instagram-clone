@@ -3,8 +3,7 @@ import './Navbar.css'
 import SessionContainer from '../SessionContainer/SessionContainer.js';
 import { SessionContext } from '../../context/SessionContext';
 import ImageUploadModal from '../ImageUploadModal/ImageUploadModal';
-import { styled, alpha } from '@mui/material/styles';
-import AppBar from '@mui/material/AppBar';
+import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
@@ -14,11 +13,12 @@ import SendIcon from '@mui/icons-material/Send';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 const Search = styled('div')(({ theme }) => ({
+  
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
+  backgroundColor: 'lightgrey',
   '&:hover': {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
+    backgroundColor: 'lightgrey',
   },
   marginLeft: 0,
   width: '100%',
@@ -39,7 +39,7 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
 }));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: 'white',
+  color: 'black',
   '& .MuiInputBase-input': {
     padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
@@ -66,9 +66,7 @@ function Navbar() {
 
       <Link to='/'> <img className="titleImg" src='instagram.png' alt="Instagram" /> </Link>
 
-      
       <Box>
-        <AppBar position="static">
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
@@ -78,7 +76,6 @@ function Navbar() {
               inputProps={{ 'aria-label': 'search' }}
             />
           </Search>
-        </AppBar>
       </Box>
 
       <div className='rightNavbar'>
