@@ -11,17 +11,15 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import { SessionContext } from '../../context/SessionContext';
 import { Link } from 'react-router-dom';
-import ToggleButton from '@mui/material/ToggleButton';
 import PostDetail from '../PostDetail/PostDetail';
 import DeleteModal from '../DeleteModal/DeleteModal';
 
-function Post({post, postId}) {
+function Post({post, postId, index}) {
 
   const { localUser } = useContext(SessionContext)
 
   const [comments, setComments] = useState([])
   const [comment, setComment] = useState('')
-  const [selected, setSelected] = useState(false);
 
   useEffect(()=> {
 
@@ -58,6 +56,17 @@ function Post({post, postId}) {
     setComment('');
   }
 
+  const toggle = () => {
+    var likeButton = document.getElementsByClassName('likeButton');
+
+    if (likeButton[index].style.color == "red") {
+      likeButton[index].style.color = "grey"
+    }
+    else{
+      likeButton[index].style.color = "red"
+    }
+  }
+
   return (
     <div className="post">
 
@@ -80,16 +89,11 @@ function Post({post, postId}) {
       localUser &&      
         <div className='postsOptions'>
           <div className="likeAndComment">
-            <ToggleButton
-              value="check"
-              selected={selected}
-              onChange={() => {
-                setSelected(!selected);
-              }}
-            >
-              < FavoriteBorderIcon fontSize="large" />
-            </ToggleButton>
 
+            <button className='likeButton' onClick={toggle}>
+              < FavoriteIcon fontSize="large"/>
+            </button>
+            
             < ChatBubbleOutlineIcon fontSize="large" />
           
           </div>

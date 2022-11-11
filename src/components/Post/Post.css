@@ -32,7 +32,6 @@
 }
 
 .postDescription strong,
-/* .comments, */
 .addCommentContainer {
     padding: 4%;
 }
@@ -52,6 +51,13 @@
     justify-content: space-between;
     width: 27%;
     align-items: center;
+}
+
+.likeButton {
+    background: transparent;
+    border: none;
+    outline: none;
+    color:grey;
 }
 
 .postsOptions {

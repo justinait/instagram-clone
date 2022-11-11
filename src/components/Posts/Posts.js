@@ -6,11 +6,12 @@ function Posts({postsList}) {
   return (
     <div className="postsContainer">
       {
-        postsList.map( ({id, post}) => (
+        postsList.map( ({id, post}, index) => (
           <Post
-            post = {post}
             key={`post-${id}`}
+            post = {post}
             postId = {id}
+            index={index}
           />
         ))
       }
