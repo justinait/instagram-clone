@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import './Navbar.css'
 import SessionContainer from '../SessionContainer/SessionContainer.js';
 import { SessionContext } from '../../context/SessionContext';
@@ -59,6 +59,10 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 function Navbar() {
 
   const {localUser} = useContext(SessionContext)
+
+  useEffect(()=> {
+
+  }, [localUser])
 
   return (
 

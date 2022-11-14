@@ -25,7 +25,7 @@ function DeleteModal({id}) {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Estas seguro que deseas eliminar esta publicacion?</Modal.Title>
+          <Modal.Title>Are you sure you want to delete this post?</Modal.Title>
         </Modal.Header>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
